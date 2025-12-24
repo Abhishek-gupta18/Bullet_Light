@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riding Jackets Journal - Armor Diaries</title>
+    <link rel="stylesheet" href="Bullet.css">
+    <style>
+        /* Journal-specific styling */
+        .journal-intro {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .journal-intro h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .journal-intro p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .journal-date {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .jackets-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .collection-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #667eea;
+            margin: 3rem 0 2rem;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .jackets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .jacket-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .jacket-card:nth-child(1) { animation-delay: 0.1s; }
+        .jacket-card:nth-child(2) { animation-delay: 0.2s; }
+        .jacket-card:nth-child(3) { animation-delay: 0.3s; }
+        .jacket-card:nth-child(4) { animation-delay: 0.4s; }
+        .jacket-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .jacket-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .jacket-image-wrapper {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .jacket-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .jacket-card:hover .jacket-image {
+            transform: scale(1.1);
+        }
+
+        .jacket-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .jacket-card:hover .jacket-overlay {
+            opacity: 1;
+        }
+
+        .jacket-label {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .jacket-description {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .jacket-description h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .jacket-description p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📓 Bullet Journal</div>
+        <div class="nav-menu">
+            <a href="Bullet.html" class="nav-link">HOME</a>
+            <a href="Models.html" class="nav-link">GALLERY</a>
+            <a href="apperal.html" class="nav-link">COLLECTIONS</a>
+            <a href="testdrive.html" class="nav-link">EXPLORATIONS</a>
+            <a href="about.html" class="nav-link">ABOUT ME</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <img src="apperal.jpg" alt="Riding Jackets" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Armor Diaries</h1>
+            <p class="hero-subtitle">A Journal of Style & Protection</p>
+        </div>
+    </section>
+
+    <section class="journal-intro">
+        <div class="journal-date">📅 December 23, 2025</div>
+        <h2>"A jacket is not just worn—it becomes your second skin on the open road."</h2>
+        <p>
+            The wind may howl, the elements may challenge, but with the right armor, you become unstoppable. 
+            This collection chronicles the finest riding jackets—each one a testament to the marriage of 
+            protection and style. Whether you're carving through city streets or conquering highways, 
+            these pieces are crafted for riders who refuse to compromise. For every rider, every journey, 
+            there's a perfect shield waiting to accompany you into the unknown.
+        </p>
+    </section>
+
+    <section class="jackets-gallery">
+        <div class="section-header">
+            <h2>Men's Collection</h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="jackets-grid">
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Premium</span>
+                    <img src="apperal.jpg" alt="Men's Jacket 1" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Road Commander</h3>
+                    <p>Power and elegance in every stitch</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Sport</span>
+                    <img src="apperal2.jpg" alt="Men's Jacket 2" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Velocity Shield</h3>
+                    <p>Aerodynamic design for the speed seeker</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Classic</span>
+                    <img src="apperal3.jpg" alt="Men's Jacket 3" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Legacy Rider</h3>
+                    <p>Timeless style for the modern adventurer</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Urban</span>
+                    <img src="apperal4.jpg" alt="Men's Jacket 4" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>City Warrior</h3>
+                    <p>Street-smart protection with urban flair</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Touring</span>
+                    <img src="apperal5.jpg" alt="Men's Jacket 5" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Journey Master</h3>
+                    <p>Built for endless miles and memories</p>
+                </div>
+            </article>
+        </div>
+
+        <h3 class="collection-subtitle">Women's Collection</h3>
+
+        <div class="jackets-grid">
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Premium</span>
+                    <img src="women1.jpg" alt="Women's Jacket 1" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Grace Rider</h3>
+                    <p>Feminine strength meets bold design</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Sport</span>
+                    <img src="women2.jpg" alt="Women's Jacket 2" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Velocity Queen</h3>
+                    <p>Performance tailored for her excellence</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Chic</span>
+                    <img src="women3.jpg" alt="Women's Jacket 3" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Elegance Force</h3>
+                    <p>Where sophistication meets the road</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Adventure</span>
+                    <img src="women4.jpg" alt="Women's Jacket 4" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Wanderer Spirit</h3>
+                    <p>For the fearless explorer within</p>
+                </div>
+            </article>
+
+            <article class="jacket-card">
+                <div class="jacket-image-wrapper">
+                    <span class="jacket-label">Signature</span>
+                    <img src="women5.jpg" alt="Women's Jacket 5" class="jacket-image">
+                    <div class="jacket-overlay"></div>
+                </div>
+                <div class="jacket-description">
+                    <h3>Freedom Icon</h3>
+                    <p>A statement of independence and style</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created with ❤️ by Abhishek Gupta and his sister</p>
+            <p class="footer-subtitle">A journal of motion, style, and inspiration</p>
+        </div>
+    </footer>
+</body>
+</html>

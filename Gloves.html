@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riding Gloves Journal - Grip Chronicles</title>
+    <link rel="stylesheet" href="Bullet.css">
+    <style>
+        /* Journal-specific styling */
+        .journal-intro {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .journal-intro h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .journal-intro p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .journal-date {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .gloves-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .gloves-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .gloves-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .gloves-card:nth-child(1) { animation-delay: 0.1s; }
+        .gloves-card:nth-child(2) { animation-delay: 0.2s; }
+        .gloves-card:nth-child(3) { animation-delay: 0.3s; }
+        .gloves-card:nth-child(4) { animation-delay: 0.4s; }
+        .gloves-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .gloves-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .gloves-image-wrapper {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .gloves-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gloves-card:hover .gloves-image {
+            transform: scale(1.1);
+        }
+
+        .gloves-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gloves-card:hover .gloves-overlay {
+            opacity: 1;
+        }
+
+        .gloves-label {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gloves-description {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .gloves-description h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .gloves-description p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📓 Bullet Journal</div>
+        <div class="nav-menu">
+            <a href="Bullet.html" class="nav-link">HOME</a>
+            <a href="Models.html" class="nav-link">GALLERY</a>
+            <a href="apperal.html" class="nav-link">COLLECTIONS</a>
+            <a href="testdrive.html" class="nav-link">EXPLORATIONS</a>
+            <a href="about.html" class="nav-link">ABOUT ME</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <img src="gloves.jpg" alt="Riding Gloves" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Grip Chronicles</h1>
+            <p class="hero-subtitle">A Journal of Control & Connection</p>
+        </div>
+    </section>
+
+    <section class="journal-intro">
+        <div class="journal-date">📅 December 23, 2025</div>
+        <h2>"In the palm of your hands lies the connection between rider and machine."</h2>
+        <p>
+            Every twist of the throttle, every pull of the brake—these moments demand precision, confidence, 
+            and the perfect grip. In this collection, I've gathered the finest riding companions that transform 
+            your hands into instruments of control. These gloves are more than protection; they're an extension 
+            of your will, a bridge between intention and action, crafted for those who understand that every 
+            journey begins with a firm grasp on destiny.
+        </p>
+    </section>
+
+    <section class="gloves-gallery">
+        <div class="section-header">
+            <h2>Gloves Collection</h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="gloves-grid">
+            <article class="gloves-card">
+                <div class="gloves-image-wrapper">
+                    <span class="gloves-label">Premium Grip</span>
+                    <img src="apperal7.jpg" alt="Racing Gloves" class="gloves-image">
+                    <div class="gloves-overlay"></div>
+                </div>
+                <div class="gloves-description">
+                    <h3>Velocity Touch</h3>
+                    <p>Precision engineered for the speed enthusiast</p>
+                </div>
+            </article>
+
+            <article class="gloves-card">
+                <div class="gloves-image-wrapper">
+                    <span class="gloves-label">Best Grip</span>
+                    <img src="apperal6.jpg" alt="Sport Gloves" class="gloves-image">
+                    <div class="gloves-overlay"></div>
+                </div>
+                <div class="gloves-description">
+                    <h3>Road Warrior</h3>
+                    <p>Built for long journeys and endless roads</p>
+                </div>
+            </article>
+
+            <article class="gloves-card">
+                <div class="gloves-image-wrapper">
+                    <span class="gloves-label">Classic</span>
+                    <img src="gloves.jpg" alt="Classic Gloves" class="gloves-image">
+                    <div class="gloves-overlay"></div>
+                </div>
+                <div class="gloves-description">
+                    <h3>Heritage Hand</h3>
+                    <p>Timeless design meets modern protection</p>
+                </div>
+            </article>
+
+            <article class="gloves-card">
+                <div class="gloves-image-wrapper">
+                    <span class="gloves-label">Pro Series</span>
+                    <img src="gloves2.jpg" alt="Performance Gloves" class="gloves-image">
+                    <div class="gloves-overlay"></div>
+                </div>
+                <div class="gloves-description">
+                    <h3>Control Master</h3>
+                    <p>Maximum feel with ultimate protection</p>
+                </div>
+            </article>
+
+            <article class="gloves-card">
+                <div class="gloves-image-wrapper">
+                    <span class="gloves-label">Signature</span>
+                    <img src="gloves3.jpg" alt="Touring Gloves" class="gloves-image">
+                    <div class="gloves-overlay"></div>
+                </div>
+                <div class="gloves-description">
+                    <h3>Distance Partner</h3>
+                    <p>Comfort for those who never stop exploring</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created with ❤️ by Abhishek Gupta and his sister</p>
+            <p class="footer-subtitle">A journal of motion, style, and inspiration</p>
+        </div>
+    </footer>
+</body>
+</html>

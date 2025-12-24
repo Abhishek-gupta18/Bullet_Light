@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Bullet Journal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,248,255,0.95) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+            padding: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* ABOUT CARD */
+        .about-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 255, 0.9) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.6s ease-out 0.3s both;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+            animation: scaleIn 0.5s ease-out both;
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.15s; }
+        .info-card:nth-child(3) { animation-delay: 0.2s; }
+        .info-card:nth-child(4) { animation-delay: 0.25s; }
+        .info-card:nth-child(5) { animation-delay: 0.3s; }
+        .info-card:nth-child(6) { animation-delay: 0.35s; }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .info-card:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #764ba2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1.3rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .bio-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .bio-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .bio-text {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-text strong {
+            color: #667eea;
+        }
+
+        .dream-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .dream-title {
+            font-size: 1.3rem;
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .dream-content {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .dream-content strong {
+            color: #667eea;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 255, 0.9) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.6s ease-out 0.5s both;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-link {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .contact-link:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: #764ba2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 255, 0.9) 100%);
+            color: #333;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 3px solid;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .footer-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-section,
+            .contact-section {
+                padding: 2rem;
+            }
+
+            .section-title,
+            .contact-title {
+                font-size: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-section {
+                padding: 1rem;
+                height: 300px;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .about-section,
+            .contact-section {
+                padding: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📓 Bullet Journal</div>
+        <div class="nav-menu">
+            <a href="Bullet.html" class="nav-link">HOME</a>
+            <a href="Models.html" class="nav-link">GALLERY</a>
+            <a href="apperal.html" class="nav-link">COLLECTIONS</a>
+            <a href="testdrive.html" class="nav-link">EXPLORATIONS</a>
+            <a href="#" class="nav-link active">ABOUT ME</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">About Me</h1>
+            <p class="hero-subtitle">Get to know the creator behind this journey</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="about-section">
+            <h2 class="section-title">👤 Creator Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Full Name</div>
+                    <div class="info-value">Abhishek Gupta</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Course</div>
+                    <div class="info-value">Bachelor of Technology</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Field of Study</div>
+                    <div class="info-value">Computer Science & Engineering</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">College</div>
+                    <div class="info-value">Lovely Professional University</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Year</div>
+                    <div class="info-value">First Year Student</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Status</div>
+                    <div class="info-value">Student</div>
+                </div>
+            </div>
+
+            <div class="bio-section">
+                <div class="bio-title">📝 About Me</div>
+                <p class="bio-text">
+                    Hello! I'm <strong>Abhishek Gupta</strong>, a passionate developer and tech enthusiast currently pursuing my Bachelor's degree in Computer Science & Engineering from <strong>Lovely Professional University</strong>. With a love for creating interactive and engaging digital experiences, I've dedicated myself to mastering web development and full-stack technologies.
+                </p>
+                <p class="bio-text">
+                    This Bullet Journal project represents my passion for combining <strong>design, functionality, and storytelling</strong> into a single cohesive experience. As one of my First Semester Project I have tried to craft every animation, every color choice, and every interaction carefully  to provide users with an immersive and enjoyable journey.
+                </p>
+                <p class="bio-text">
+                    I believe in the power of <strong>continuous learning</strong> and <strong>innovation</strong>. Whether it's exploring new technologies, mastering UI/UX design, or building robust backend systems, I'm always eager to push my boundaries and create solutions that make a difference.
+                </p>
+
+                <div class="dream-section">
+                    <div class="dream-title">🎯 My Dream & Vision</div>
+                    <div class="dream-content">
+                        My ultimate dream is to become a <strong>renowned Software developer and tech entrepreneur</strong>. I aspire to create innovative applications that solve real-world problems and improve people's lives. I want to build a legacy in the tech industry by:
+                        <br><br>
+                        ✨ Developing cutting-edge web and mobile applications<br>
+                        ✨ Contributing to open-source projects and the developer community<br>
+                        ✨ Mentoring aspiring developers and sharing knowledge<br>
+                        ✨ Starting my own tech venture that makes a global impact<br>
+                        ✨ Combining creativity with technology to create extraordinary user experiences
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2 class="contact-title">📬 Get In Touch</h2>
+            <p style="text-align: center; color: #555; font-size: 1.1rem; margin-bottom: 2rem; font-style: italic;">
+                Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:Abhishekgupta.18052006@gmail.com" class="contact-link" target="_blank">
+                    <div class="contact-label">📧 Email</div>
+                    <div class="contact-value">Abhishekgupta.18052006@gmail.com</div>
+                </a>
+                <a href="tel:+91789749213" class="contact-link">
+                    <div class="contact-label">📱 Phone</div>
+                    <div class="contact-value">+91789749213</div>
+                </a>
+                <a href="https://www.linkedin.com/in/abhishek-gupta-a01394341/" class="contact-link" target="_blank">
+                    <div class="contact-label">💼 LinkedIn</div>
+                    <div class="contact-value">Abhishek Gupta</div>
+                </a>
+                <a href="https://github.com/Abhishek-gupta18" class="contact-link" target="_blank">
+                    <div class="contact-label">💻 GitHub</div>
+                    <div class="contact-value">Abhishek-gupta18</div>
+                </a>
+                <a href="https://www.instagram.com/abgupta6176/" class="contact-link" target="_blank">
+                    <div class="contact-label">📸 Instagram</div>
+                    <div class="contact-value">Abhishek Gupta</div>
+                </a>
+                <a href="https://twitter.com/Pixel_Nomad018" class="contact-link" target="_blank">
+                    <div class="contact-label">🐦 Twitter</div>
+                    <div class="contact-value">Pixel_Nomad018</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="contact-section" style="margin-top: 2rem;">
+            <h2 class="contact-title">🎮 Additional Details</h2>
+            <div class="contact-links">
+                <div class="contact-link">
+                    <div class="contact-label">Gaming ID</div>
+                    <div class="contact-value">Pixel_Nomad</div>
+                </div>
+                <div class="contact-link">
+                    <div class="contact-label">Passion</div>
+                    <div class="contact-value">CyberSecurity</div>
+                </div>
+                <div class="contact-link">
+                    <div class="contact-label">Hobby</div>
+                    <div class="contact-value">Gaming & Coding & Music</div>
+                </div>
+                <div class="contact-link">
+                    <div class="contact-label">Favorite Tech</div>
+                    <div class="contact-value">Linux and Hacking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Created with ❤️ by Abhishek Gupta and his sister</p>
+        <p class="footer-subtitle">A journal of motion, style, and inspiration</p>
+    </footer>
+</body>
+</html>

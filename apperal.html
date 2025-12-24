@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Bullet Journal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,248,255,0.95) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .collection-card {
+            text-decoration: none;
+            color: inherit;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease-out both;
+            transition: all 0.3s ease;
+        }
+
+        .collection-card:nth-child(1) { animation-delay: 0.1s; }
+        .collection-card:nth-child(2) { animation-delay: 0.2s; }
+        .collection-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .collection-image {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .collection-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.4) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .collection-content {
+            padding: 2.5rem;
+        }
+
+        .collection-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .collection-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .collection-card:hover .collection-overlay {
+            opacity: 1;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #2d3436 0%, #1e272e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 3px solid;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .footer-subtitle {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .collections-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .collection-title {
+                font-size: 1.3rem;
+            }
+            .collection-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📓 Bullet Journal</div>
+        <div class="nav-menu">
+            <a href="Bullet.html" class="nav-link">HOME</a>
+            <a href="Models.html" class="nav-link">GALLERY</a>
+            <a href="#" class="nav-link active">COLLECTIONS</a>
+            <a href="testdrive.html" class="nav-link">EXPLORATIONS</a>
+            <a href="about.html" class="nav-link">ABOUT ME</a>
+        </div>
+    </nav>
+
+    <section class="header">
+        <h1>Featured Collections</h1>
+        <p>Curated Themes and Special Editions</p>
+    </section>
+
+    <section class="container">
+        <div class="collections-grid">
+            <a href="Jackets.html" class="collection-card">
+                <div class="collection-image">
+                    <img src="apperal.jpg" alt="Jackets Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-content">
+                    <h2 class="collection-title">Premium Jackets</h2>
+                    <p class="collection-description">Explore our exclusive collection of stylish and comfortable jackets designed for every journey.</p>
+                    <span class="collection-badge">Browse Collection</span>
+                </div>
+            </a>
+
+            <a href="Gloves.html" class="collection-card">
+                <div class="collection-image">
+                    <img src="apperal7.jpg" alt="Gloves Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-content">
+                    <h2 class="collection-title">Protective Gloves</h2>
+                    <p class="collection-description">Quality gloves that blend safety and style for the modern adventurer.</p>
+                    <span class="collection-badge">Browse Collection</span>
+                </div>
+            </a>
+
+            <a href="helmet.html" class="collection-card">
+                <div class="collection-image">
+                    <img src="helmet.jpeg" alt="Helmets Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-content">
+                    <h2 class="collection-title">Safety Helmets</h2>
+                    <p class="collection-description">Premium helmets engineered for maximum protection and comfort.</p>
+                    <span class="collection-badge">Browse Collection</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Created with ❤️ by Abhishek Gupta and his sister</p>
+        <p class="footer-subtitle">A journal of motion, style, and inspiration</p>
+    </footer>
+</body>
+</html>
